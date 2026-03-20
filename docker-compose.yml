@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  production:
+    build: .
+    container_name: cs-api
+    ports:
+      - "80:9000"
+    volumes:
+      - .:/app
+    command: python run.py
+
+  local:
+    build: .
+    container_name: cs-api
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/app
+    command: python run.py
+
+  test:
+    build: .
+    container_name: cs-test
+    volumes:
+      - .:/app
+    command: pytest -v
